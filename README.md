@@ -18,6 +18,7 @@ Fast actions for the currently open Pythonista script:
 - Copy its filesystem path
 - Copy a `pythonista3://` URL that **runs** it
 - Copy a `pythonista3://` URL that **opens** it
+- Tune the script's top-level constants (see [Tune Constants](#tune-constants))
 - Replace the script with clipboard contents
 - Duplicate the script beside the original
 - Clear the script, with confirmation
@@ -38,6 +39,26 @@ The keyboard can be dismissed explicitly and also gets out of the way when navig
 ### Find / Replace
 
 Simple whole-script find and replace, including buttons for loading either field directly from the clipboard.
+
+### Tune Constants
+
+Many Pythonista scripts keep their settings as top-level constants:
+
+    ACCENT_COLOR = '#6596FF'
+    TILE_SIZE = 64  # range: 16-128
+    SPEED = 0.25
+    DEBUG = False
+
+**🎛️ Tune Constants** on the Quick page opens a sheet listing every top-level `UPPER_CASE` name set to a plain value in the open script, grouped under its `# ====` banner comments:
+
+- **numbers** get a slider and a typed field
+- **True / False** gets a switch
+- **hex colours** get a swatch that opens hue, saturation and brightness sliders
+- **text** and other literals (tuples, lists, dicts) get an editable field
+
+Each change is written straight into the editor, keeping your quote style, hex case and decimal places, and can be undone there. Anything computed, such as `ROOT = os.path.expanduser('~')`, is left alone.
+
+A slider runs from 0 to twice the current value by default. Add a trailing `# range: low-high` comment to set the range yourself.
 
 ## Navigation
 
@@ -123,7 +144,7 @@ Action Deck deliberately stays lightweight:
 - no project-specific integrations
 - large touch targets
 - dark interface designed for iPhone and iPad
-- Pythonista's built-in `ui`, `editor`, `clipboard`, `console`, and `objc_util` modules only
+- Pythonista's built-in `ui`, `editor`, `clipboard`, `console`, and `objc_util` modules, plus the Python standard library
 
 ## Safety
 
